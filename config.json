@@ -1,0 +1,10 @@
+{
+  "params": {
+      "host": "localhost",
+      "user": "root",
+      "password": "qwertyuiopSQL@04",
+      "database": "medical",
+      "ssl_disabled": "true",
+      "login_image": "4k.jpg"
+  }
+}
