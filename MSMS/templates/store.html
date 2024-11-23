@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/contact-bg.jpg') }}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Recorded List Using Stored Procedures</h1>
+            <span class="subheading">Have questions? I have answers.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Mid</th>
+        <th>Medicines</th>
+        <th>Products</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+        <tr>
+          <td>{{ post.mid }}</td>
+          <td>{{ post.medicines }}</td>
+          <td>{{ post.products }}</td>
+          <td>{{ post.amount }}</td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="4">No records available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+</html>
+{% endblock %}

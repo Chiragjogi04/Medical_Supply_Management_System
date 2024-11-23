@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <header class="masthead mb-0" style="background-image: url('{{ url_for('static', filename='img/md.jpg') }}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{ params['headname'] }}</h1>
+            <span class="subheading">Medicines and Products</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {% with messages=get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <div class="container">
+    <h2 class="my-4">All Posts</h2>
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{ url_for('static', filename='img/md.jpg') }}" alt="Post Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ post[1] }}</h5>  <!-- medical_name -->
+              <p class="card-text">Owner: {{ post[2] }}</p>  <!-- owner_name -->
+              <p class="card-text">Phone: {{ post[3] }}</p>  <!-- phone_no -->
+              <p class="card-text">Address: {{ post[4] }}</p>  <!-- address -->
+
+              <!-- Delete Form -->
+              <form method="POST" action="{{ url_for('delete', mid=post[0]) }}"> <!-- mid -->
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
