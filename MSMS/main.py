@@ -2,15 +2,15 @@ from flask import Flask, render_template, request, session, redirect, flash
 import mysql.connector
 
 app = Flask(__name__)
-app.secret_key = 'super-secret-key'  # Make sure this is set for session management
+app.secret_key = 'super-secret-key' 
 
 # MySQL Database configuration
 DB_CONFIG = {
-    "host": "localhost",     # Update as needed
-    "user": "root",          # Update with MySQL username
-    "password": "qwertyuiopSQL@04",  # Update with MySQL password
-    "database": "medical",   # Update with your database name
-    "login_image": "4k.jpg"  # Login image filename
+    "host": "localhost",
+    "user": "root",         
+    "password": "YOUR_SQL_PASSWORD",
+    "database": "medical",
+    "login_image": "4k.jpg" 
 }
 
 # Connect to the database
@@ -69,7 +69,6 @@ def delete(mid):
         cursor = conn.cursor()
 
         try:
-            # Delete the post from the database by mid (Post table)
             cursor.execute("DELETE FROM Posts WHERE mid = %s", (mid,))
             conn.commit()  # Commit the changes
             flash("Post deleted successfully!", "danger")
